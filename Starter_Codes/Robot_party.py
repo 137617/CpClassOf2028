@@ -3,6 +3,7 @@
 # Data structure robots[ID,"name","sector", "battery", "status" ]
 
 robots = [
+    #[id, name, location, battery, status]
     [101, "Scout-1", "Sector A", 92, "AVAILABLE"],
     [108, "Medic-2", "Sector B", 67, "BUSY"],
     [115, "Rover-3", "Sector A", 45, "CHARGING"],
@@ -29,13 +30,25 @@ def show_all_robots():
 
 
 def linear_search_robot(target_id):
-    
+    print('dada')
     # TODO: use a for loop to match each entry with a target_ID.
 
 def binary_search_robot(target_id):
     low = 0
     high = len(robots) - 1
     comparisons = 0
+    while low <= high:
+        robot=high/2
+        if robot==target_id:
+            comparisons +=1
+            return robot, comparisons
+        elif robot <target_id:
+            comparisons+=1
+            high = robot
+        elif robot>target_id:
+            comparisons+=1
+            low=robot
+
 
     # TODO: Use a while loop that continues while low <= high
     # TODO: Calculate the middle index
@@ -45,7 +58,6 @@ def binary_search_robot(target_id):
     # TODO: If target_id == middle ID, return the robot and comparison count
     # TODO: If target_id > middle ID, move low above middle
     # TODO: If target_id < middle ID, move high below middle
-
     return None, comparisons
 
 
@@ -97,4 +109,7 @@ while running:
     print("2 - Display robot database")
     print("3 - Show robots ready for deployment")
     print("4 - deploy first available robot")
+    x = int(input())
+    if x == 1:
+        search_robot()
 
