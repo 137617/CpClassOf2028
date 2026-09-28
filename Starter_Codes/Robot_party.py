@@ -3,7 +3,6 @@
 # Data structure robots[ID,"name","sector", "battery", "status" ]
 
 robots = [
-    #[id, name, location, battery, status]
     [101, "Scout-1", "Sector A", 92, "AVAILABLE"],
     [108, "Medic-2", "Sector B", 67, "BUSY"],
     [115, "Rover-3", "Sector A", 45, "CHARGING"],
@@ -22,33 +21,27 @@ robots = [
     [231, "Atlas-16", "Sector E", 42, "CHARGING"]
 ]
 
-search_history = []
-
-
 def show_all_robots():
     print("\n--- ROBOT DATABASE ---")
-
-
-def linear_search_robot(target_id):
-    print('dada')
-    # TODO: use a for loop to match each entry with a target_ID.
-
-def binary_search_robot(target_id):
+    x=0
+    for i in robots:
+        print(robots[x])
+        x+=1
+        if i==len(robots):
+            x=0
+    return None
+def binary_search_robot(robots, target_id):
     low = 0
     high = len(robots) - 1
-    comparisons = 0
-    while low <= high:
-        robot=high/2
-        if robot==target_id:
-            comparisons +=1
-            return robot, comparisons
-        elif robot <target_id:
-            comparisons+=1
-            high = robot
-        elif robot>target_id:
-            comparisons+=1
-            low=robot
-
+    while low<=high:
+        mid=low+(high-low)//2
+        print(robots[mid][0])
+        if robots[mid][0] == target_id:
+            return mid
+        elif robots[mid][0]<=target_id:
+            low = mid+1
+        elif robots[mid][0]>=target_id:
+            high=mid-1
 
     # TODO: Use a while loop that continues while low <= high
     # TODO: Calculate the middle index
@@ -58,46 +51,55 @@ def binary_search_robot(target_id):
     # TODO: If target_id == middle ID, return the robot and comparison count
     # TODO: If target_id > middle ID, move low above middle
     # TODO: If target_id < middle ID, move high below middle
-    return None, comparisons
+
+    return -1
 
 
-def show_robot(robot, comparisons):
+def show_robot(robot):
     print("\n-----------------------------")
     print("ROBOT FOUND")
     print("-----------------------------")
-    print("ID:      ", robot[0])
-    print("Name:    ", robot[1])
-    print("Location:", robot[2])
-    print("Battery: ", str(robot[3]) + "%")
-    print("Status:  ", robot[4])
-    print("Comparisons:", comparisons)
+    print("ID:      ", robots[robot][0])
+    print("Name:    ", robots[robot][1])
+    print("Location:", robots[robot][2])
+    print("Battery: ", str(robots[robot][3]) + "%")
+    print("Status:  ", robots[robot][4])
+    if robots[robot][3] > 70:
+        print('battery is GOOD')
+    elif robots[robot][3] > 50:
+        print('battery is LOW')
+    elif robots[robot][3] < 50:
+        print('CRITICAL battery life')
+    if robots[robot][4] == 'AVAILABLE':
+        print('robot is ready for deployment')
+    elif robots[robot][4] == 'BUSY':
+        print('robot is BUSY')
+    elif robots[robot][4] == 'CHARGING':
+        if robots[robot][3] >=70:
+            print('robot is ready for deployment')
+        else: 
+            print('robot is charging')
 
-    # TODO CHALLENGE: classify battery as GOOD / LOW / CRITICAL
-    # TODO CHALLENGE: say whether the robot is ready to deploy
+    # TODO CHALLENGE: classify battery as GOOD / LOW / CRITICAL +
+    # TODO CHALLENGE: say whether the robot is ready to deploy +
 
 
 def search_robot():
     target_id = int(input("Enter Robot ID: "))
-    search_history.append(target_id)
+    
+    robot = binary_search_robot(robots, target_id)
 
-    robot, comparisons = binary_search_robot(target_id)
-
-    if robot is not None:
-        show_robot(robot, comparisons)
+    if robot != -1:
+        show_robot(robot)
     else:
         print("Robot", target_id, "was not found.")
-        print("Search completed after", comparisons, "comparisons.")
+        
 
 
 def show_ready_robots():
     print("\n--- READY FOR EMERGENCY DEPLOYMENT ---")
-    # TODO: Use a for loop to display robots that are AVAILABLE
-    #       and have a battery level of at least 70%
 
 
-def show_search_history():
-    print("\n--- SEARCH HISTORY ---")
-    # TODO: Use a for loop to print each searched Robot ID
 
 
 running = True
@@ -109,7 +111,13 @@ while running:
     print("2 - Display robot database")
     print("3 - Show robots ready for deployment")
     print("4 - deploy first available robot")
-    x = int(input())
-    if x == 1:
-        search_robot()
+    print("5 - deplay robot by ID")
+    print("6 - Exit")
+    choice = int(input("select option:"))
 
+    if choice == 1:
+        search_robot()
+    if choice == 2:
+        show_all_robots()
+    if choice == 6:
+        break
