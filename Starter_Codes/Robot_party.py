@@ -23,6 +23,7 @@ robots = [
 
 def show_all_robots():
     print("\n--- ROBOT DATABASE ---")
+<<<<<<< HEAD
     x=0
     for i in robots:
         print(robots[x])
@@ -31,6 +32,18 @@ def show_all_robots():
             x=0
     return None
 def binary_search_robot(robots, target_id):
+=======
+
+
+def linear_search_robot(target_id):
+    comparisons = 0
+
+    # TODO: use a for loop to match each entry with a target_ID.
+    # TODO: add +1 to the counter of comparisons.
+    
+    return None, comparisons
+def binary_search_robot(target_id):
+>>>>>>> 8897c7249f78120c8be6f1019898621cb859624d
     low = 0
     high = len(robots) - 1
     while low<=high:
@@ -59,6 +72,7 @@ def show_robot(robot):
     print("\n-----------------------------")
     print("ROBOT FOUND")
     print("-----------------------------")
+<<<<<<< HEAD
     print("ID:      ", robots[robot][0])
     print("Name:    ", robots[robot][1])
     print("Location:", robots[robot][2])
@@ -79,6 +93,13 @@ def show_robot(robot):
             print('robot is ready for deployment')
         else: 
             print('robot is charging')
+=======
+    print("ID:      ", robot[0])
+    print("Name:    ", robot[1])
+    print("Location:", robot[2])
+    print("Battery: ", str(robot[3]) + "%")
+    print("Status:  ", robot[4])
+>>>>>>> 8897c7249f78120c8be6f1019898621cb859624d
 
     # TODO CHALLENGE: classify battery as GOOD / LOW / CRITICAL +
     # TODO CHALLENGE: say whether the robot is ready to deploy +
@@ -87,10 +108,17 @@ def show_robot(robot):
 def search_robot():
     target_id = int(input("Enter Robot ID: "))
     
+<<<<<<< HEAD
     robot = binary_search_robot(robots, target_id)
 
     if robot != -1:
         show_robot(robot)
+=======
+    robot, comparisons = binary_search_robot(target_id)
+
+    if robot is not None:
+        show_robot(robot, comparisons)
+>>>>>>> 8897c7249f78120c8be6f1019898621cb859624d
     else:
         print("Robot", target_id, "was not found.")
         
@@ -100,8 +128,11 @@ def show_ready_robots():
     print("\n--- READY FOR EMERGENCY DEPLOYMENT ---")
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 8897c7249f78120c8be6f1019898621cb859624d
 running = True
 while running:
     print("\n=================================")
@@ -113,7 +144,11 @@ while running:
     print("4 - deploy first available robot")
     print("5 - deplay robot by ID")
     print("6 - Exit")
+<<<<<<< HEAD
     choice = int(input("select option:"))
+=======
+    choice = input("select option:")
+>>>>>>> 8897c7249f78120c8be6f1019898621cb859624d
 
     if choice == 1:
         search_robot()
