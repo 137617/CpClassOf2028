@@ -39,6 +39,10 @@ def open():
 def close():
     with open("Agents.json", "w") as file:
         json.dump(agents, file, indent=4)
+while True:
+    choise = int(input())
+    if choise == 1:
+        search()
 
-agent_list = open()
+#agent_list = open()
 
