@@ -6,26 +6,38 @@
 # 1.
 # Create a program that checks if it is sunny and you have sunglasses.
 # Output should be True only if both are true.
-if S and 
+if S and G == 1:
+    print('go outside')
+
 
 
 # 2.
 # Check if you have homework or you have a project due.
 # Output should be True if at least one is true.
+if H or P == 1:
+    print('you have work')
 
 # 3.
 # Check if you are not tired.
 # Use the not operator.
-
+if not T == 1:
+    print('you are not tiered')
 # 4.
 # “If it is raining, then you bring an umbrella.”
 # Write this as: if raining then umbrella, which is (not raining) or umbrella.
 
+if R==1:
+    U
+elif not R==1:
+    not U
 # 5.
 
 # “It is weekend if and only if you don’t have school.”
 # Translate to (weekend and not school) or (not weekend and school == False).
-
+if (W and not S) or (not W and S):
+    W == 0
+if W== not S:
+    W == 1
 # 6. 
 # “You can play video games if exactly one of these is true: it’s weekend or you finished homework.”
 
